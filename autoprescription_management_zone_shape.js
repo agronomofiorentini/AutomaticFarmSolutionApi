@@ -1,7 +1,12 @@
 const axios = require('axios');
 const fs = require('fs');
 
+// set the endpoint
+
 const apiUrl = 'https://www.api.automaticfarmsolutionwebapp.com/AFS/AutoPrescriptionShapefile?AutoPrescription=False&NumberZone=4&userfertilizer=200&Strategy=highwherehigh';
+
+// set the endpoint
+
 const geojsonFilePath = 'county.geojson';
 const username = 'XXXXXXXXXX';
 const password = 'XXXXXXXXXX';
