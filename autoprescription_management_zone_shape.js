@@ -5,41 +5,44 @@ const fs = require('fs');
 
 const apiUrl = 'https://www.api.automaticfarmsolutionwebapp.com/AFS/AutoPrescriptionShapefile?AutoPrescription=False&NumberZone=4&userfertilizer=200&Strategy=highwherehigh';
 
-// set the endpoint
+// set the path to the geojson
 
 const geojsonFilePath = 'county.geojson';
+
+// set the username and password
+
 const username = 'XXXXXXXXXX';
 const password = 'XXXXXXXXXX';
 
 async function main() {
   try {
-    // Carica il GeoJSON dal file locale
+    // read the geojson content
     const geojson = JSON.parse(fs.readFileSync(geojsonFilePath, 'utf8'));
 
-    // Costruisci l'intestazione per l'autenticazione di base
+    // Build header for basic authentication
     const authHeader = `Basic ${Buffer.from(`${username}:${password}`).toString('base64')}`;
 
-    // Effettua la richiesta POST all'API
+    // Make the POST request to the API
     const response = await axios.post(apiUrl, geojson, {
       headers: {
         'Authorization': authHeader,
         'Content-Type': 'application/json',
       },
-      responseType: 'stream', // Indica ad Axios di trattare la risposta come uno stream
+      responseType: 'stream',
     });
 
-    // Salva il file shapefile localmente
-    const shapefilePath = 'result.zip'; // Specifica il percorso e il nome del file shapefile
+    // Save shapefile locally
+    const shapefilePath = 'result.zip'; // Specifies the path and name of the shapefile
     response.data.pipe(fs.createWriteStream(shapefilePath));
 
-    // Aspetta che il file venga salvato prima di uscire dal programma
+    // Wait for the file to be saved before exiting the program
     await new Promise((resolve) => {
       response.data.on('end', resolve);
     });
 
-    console.log('File shapefile salvato con successo!');
+    console.log('The shapefile is saved with success!');
   } catch (error) {
-    console.error('Si è verificato un errore:', error.message);
+    console.error('An error occurred:', error.message);
   }
 }
 
