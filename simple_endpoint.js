@@ -1,11 +1,15 @@
 const axios = require('axios');
 
+// set the username and password
+
 const username = 'XXXXXXXXXXXX';
 const password = 'XXXXXXXXXXXX';
 
-const url = 'https://www.api.automaticfarmsolutionwebapp.com/AFS/SoilDataPoint?long=13.3123&lat=42.4560'; // Sostituisci con l'URL dell'API di destinazione
+// set the api endpoint
 
-// Opzioni per la richiesta HTTP con autenticazione di base
+const url = 'https://www.api.automaticfarmsolutionwebapp.com/AFS/SoilDataPoint?long=13.3123&lat=42.4560'; // Replace with the URL of the target API.
+
+// Options for HTTP request with basic authentication
 const options = {
   method: 'post',
   url: url,
@@ -17,9 +21,9 @@ const options = {
 
 axios(options)
   .then(response => {
-    // La risposta della POST request è contenuta in response.data
-    console.log('Risposta JSON:', response.data);
+    // The response of the POST request is contained in response.data
+    console.log('JSON response:', response.data);
   })
   .catch(error => {
-    console.error('Errore:', error.message);
+    console.error('Error:', error.message);
   });
