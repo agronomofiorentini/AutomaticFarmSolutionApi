@@ -8,7 +8,7 @@ const PORT = process.env.PORT || 3000;
 // Vegetation index map const API_URL = 'https://www.api.automaticfarmsolutionwebapp.com/AFS/VegetationIndexHtmlWidget?vegetationindex=ndvi';
 // Evapotraspiration Map const API_URL = 'https://www.api.automaticfarmsolutionwebapp.com/AFS/EvapotraspirationMapHtmlWidget?';
 // Zone Management const API_URL = 'https://www.api.automaticfarmsolutionwebapp.com/AFS/ZoneManagementHtmlWidget?AutoPrescription=True&NumberZone=4';
-// Prescription map const API_URL = 'https://www.api.automaticfarmsolutionwebapp.com/AFS/AutoPrescriptionHtmlWidget?AutoPrescription=True&NumberZone=4&userfertilizer=200&Strategy=highwherehig';
+// Prescription map const API_URL = 'https://www.api.automaticfarmsolutionwebapp.com/AFS/AutoPrescriptionHtmlWidget?AutoPrescription=True&NumberZone=4&userfertilizer=200&Strategy=highwherehigh';
 
 // set api endpoint
 
