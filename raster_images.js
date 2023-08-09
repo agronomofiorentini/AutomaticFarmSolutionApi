@@ -2,34 +2,40 @@ const axios = require('axios');
 const fs = require('fs');
 
 async function makePostRequest() {
+  
+  // set the api endpoint
+  
   const apiUrl = 'https://www.api.automaticfarmsolutionwebapp.com/AFS/VegetationIndex?vegetationindex=ndvi'; // Sostituisci con l'URL dell'API a cui vuoi fare la richiesta POST
+  
+  // set the usernamen and password
+  
   const username = 'XXXXXXXXXXXXX';
   const password = 'XXXXXXXXXXXXX';
 
-  // Carica il file GeoJSON localmente
-  const geojsonFilePath = 'county.geojson'; // Sostituisci con il percorso del tuo file GeoJSON
+  // Upload GeoJSON file locally
+  const geojsonFilePath = 'county.geojson'; // Replace with the path to your GeoJSON file
   const geojsonFile = fs.readFileSync(geojsonFilePath, 'utf8');
 
-  // Imposta l'header per l'autenticazione base
+  // Sets the header for basic authentication
   const authHeader = 'Basic ' + Buffer.from(username + ':' + password).toString('base64');
 
   try {
-    // Effettua la richiesta POST all'API
+    // Make the POST request to the API
     const response = await axios.post(apiUrl, geojsonFile, {
       headers: {
         'Content-Type': 'application/json',
         'Authorization': authHeader,
       },
-      responseType: 'arraybuffer', // Specifichiamo che la risposta è un array di byte (file binario)
+      responseType: 'arraybuffer', // We specify that the response is an array of bytes (binary file)
     });
 
-    // Salva il file raster ottenuto in risposta
-    const rasterFilePath = 'file.tif'; // Sostituisci con il percorso in cui vuoi salvare il file raster
+    // Save the raster file obtained in response
+    const rasterFilePath = 'file.tif'; // Replace with the path where you want to save the raster file
     fs.writeFileSync(rasterFilePath, response.data);
 
-    console.log('File raster salvato correttamente:', rasterFilePath);
+    console.log('Raster file saved correctly:', rasterFilePath);
   } catch (error) {
-    console.error('Si è verificato un errore durante la richiesta:', error.message);
+    console.error('An error occurred during the request:', error.message);
   }
 }
 
