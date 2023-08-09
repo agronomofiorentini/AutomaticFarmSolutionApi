@@ -39,11 +39,11 @@ const outputFilePath = 'result.geojson';
 
     const resultGeoJSON = response.data;
     // See the response of the api in the console
-    console.log('Risposta dall\'API:', resultGeoJSON);
+    console.log('Answer of the API:', resultGeoJSON);
 
     await fs.promises.writeFile(outputFilePath, JSON.stringify(resultGeoJSON, null, 2), 'utf8');
 
   } catch (err) {
-    console.error('Errore:', err.message);
+    console.error('Error:', err.message);
   }
 })();
